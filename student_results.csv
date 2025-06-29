@@ -1,0 +1,10 @@
+Student Name,Assignment 1,Grade,Assignment 2,Grade,Average,Final Grade
+Felix ndege,78,A,87,A,82.50,A
+
+Grading Criteria:
+Score Range,Grade
+70-100,A
+60-69,B
+50-59,C
+40-49,D
+0-39,E
