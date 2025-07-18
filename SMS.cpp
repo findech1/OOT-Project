@@ -89,6 +89,7 @@ class GradingSystem {
 private:
     std::vector<Student> students;
     int numAssignments;
+    std::string courseName;
 
     void clearInputBuffer() const {
         std::cin.clear();
@@ -105,21 +106,40 @@ private:
     }
 
 public:
-    GradingSystem() : numAssignments(0) {}
+    GradingSystem() : numAssignments(0), courseName("") {}
+
+    void setCourseName() {
+        std::cout << "Enter course name: ";
+        clearInputBuffer();
+        std::getline(std::cin, courseName);
+        if (courseName.empty()) {
+            std::cout << "Course name cannot be empty!" << std::endl;
+        } else {
+            std::cout << "Course name set to: " << courseName << std::endl;
+        }
+    }
+
+    void displayCourseName() const {
+        if (!courseName.empty()) {
+            std::cout << "Course: " << courseName << std::endl;
+        }
+    }
 
     void showMenu() {
         std::cout << "\n=== KCA Students Grading System ===" << std::endl;
-        std::cout << "1. Set number of assignments" << std::endl;
-        std::cout << "2. Add student" << std::endl;
-        std::cout << "3. Display all students" << std::endl;
-        std::cout << "4. Search student" << std::endl;
-        std::cout << "5. Update student marks" << std::endl;
-        std::cout << "6. Delete student" << std::endl;
-        std::cout << "7. Display statistics" << std::endl;
-        std::cout << "8. Sort students" << std::endl;
-        std::cout << "9. Export to file" << std::endl;
-        std::cout << "10. Import from file" << std::endl;
-        std::cout << "11. Display grade distribution" << std::endl;
+        displayCourseName();
+        std::cout << "1. Set course name" << std::endl;
+        std::cout << "2. Set number of assignments" << std::endl;
+        std::cout << "3. Add student" << std::endl;
+        std::cout << "4. Display all students" << std::endl;
+        std::cout << "5. Search student" << std::endl;
+        std::cout << "6. Update student marks" << std::endl;
+        std::cout << "7. Delete student" << std::endl;
+        std::cout << "8. Display statistics" << std::endl;
+        std::cout << "9. Sort students" << std::endl;
+        std::cout << "10. Export to file" << std::endl;
+        std::cout << "11. Import from file" << std::endl;
+        std::cout << "12. Display grade distribution" << std::endl;
         std::cout << "0. Exit" << std::endl;
         std::cout << "Enter your choice: ";
     }
@@ -421,20 +441,21 @@ public:
 
         do {
             showMenu();
-            choice = getValidInteger(0, 11);
+            choice = getValidInteger(0, 12);
 
             switch (choice) {
-                case 1: setNumAssignments(); break;
-                case 2: addStudent(); break;
-                case 3: displayAllStudents(); break;
-                case 4: searchStudent(); break;
-                case 5: updateStudentMarks(); break;
-                case 6: deleteStudent(); break;
-                case 7: displayStatistics(); break;
-                case 8: sortStudents(); break;
-                case 9: exportToFile(); break;
-                case 10: importFromFile(); break;
-                case 11: displayGradeDistribution(); break;
+                case 1: setCourseName(); break;
+                case 2: setNumAssignments(); break;
+                case 3: addStudent(); break;
+                case 4: displayAllStudents(); break;
+                case 5: searchStudent(); break;
+                case 6: updateStudentMarks(); break;
+                case 7: deleteStudent(); break;
+                case 8: displayStatistics(); break;
+                case 9: sortStudents(); break;
+                case 10: exportToFile(); break;
+                case 11: importFromFile(); break;
+                case 12: displayGradeDistribution(); break;
                 case 0: std::cout << "Thank you for using KCA Grading System!" << std::endl; break;
                 default: std::cout << "Invalid choice! Please try again." << std::endl;
             }
